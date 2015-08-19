@@ -1,0 +1,80 @@
+<?php
+
+function motor_menu() {
+  
+  $items['link_one/%/%'] = array(
+    'title' => 'Competition', 
+    'page callback' => 'motor_competition',
+    'page arguments' => array(0,1,2),
+    'access arguments' => array('access content'),
+  );
+  
+  $items['link_two'] = array(
+    'title' => 'personal thank', 
+    'page callback' => 'motor_thanks_page_personal', 
+    'access arguments' => array('access content'),
+  );
+ 
+  return $items;
+}
+
+
+
+function motor_thanks_page_personal() {
+  $output = '';
+  $output.= 'LINK SECOND';
+  return $output;
+}
+
+function motor_competition($one,$thread,$type) {
+	$output = '';
+	$output.= $one . ':' . $thread . ':' . $type;
+	return $output;
+}
+
+
+
+function motor_block_info() {
+
+  $blocks['mycountdown'] = array(
+    'info' => t('My count down - next game'), 
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['trace'] = array(
+    'info' => t('Trace'), 
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+function motor_block_view($delta = '') {
+ 
+  $block = array();
+
+  switch ($delta) {
+    case 'mycountdown':
+      $block['subject'] = 'My count down';
+      $block['content'] = 'Hello world!';
+      break;
+    case 'trace':
+      $block['subject'] = 'trace variables';
+      $content = 'egy sor<br />';
+      $content.= 'még egy sor';
+      $block['content'] = $content;
+      break;
+  }
+  return $block;
+}
+
+
+
+
+function motor_form_alter(&$form, &$form_state, $form_id) {
+	dpm($form);
+	dpm('FROM ID:' . $form_id);
+	if ($form_id == 'comment_node_article_form') {
+		$form['subject']['#title'] = 'hello world!';
+	}
+}

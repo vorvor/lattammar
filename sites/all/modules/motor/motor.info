@@ -1,0 +1,7 @@
+name = MOTOR
+description = MOTOR
+core = 7.x
+scripts[] = script.js
+stylesheets[all][] = motorstyle.css
+
+

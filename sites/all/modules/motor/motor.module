@@ -1,0 +1,165 @@
+<?php
+
+
+
+
+function motor_menu() {
+  global $quid;
+  $items['motor/%'] = array(
+    'title' => 'Task reset',
+    'page callback' => 'motor_node',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+  );
+
+  $items['stat'] = array(
+    'title' => 'Task reset',
+    'page callback' => 'motor_stat',
+    'access arguments' => array('access content'),
+  );
+  
+  return $items;
+}
+
+function motor_node($nid) {
+  $node = node_load($nid);
+  $node = node_view($node);
+  print drupal_render($node);
+}
+
+function motor_block_info() {
+  $blocks = array();
+  $blocks['tag_cloud'] = array(
+    'info' => t('Tag cloud'),
+  );
+ 
+  return $blocks;
+}
+
+function motor_block_view($delta='') {
+  $block = array();
+  $content = '<div id="tag-cloud">
+<div class="tag w8">reggel</div>
+<div class="tag w9">út</div>
+<div class="tag">senki</div>
+<div class="tag">állomás</div>
+<div class="tag">kettő</div>
+<div class="tag">most</div>
+<div class="tag w8">ház</div>
+<div class="tag">idő</div>
+<div class="tag w7">hely</div>
+<div class="tag">éjszaka</div>
+<div class="tag w9">metro</div>
+<div class="tag">emberek</div>
+<div class="tag w10" style="left:40%; top: 30%;">Duna</div>
+<div class="tag">utca</div>
+<div class="tag">élet</div>
+<div class="tag">miért</div>
+<div class="tag w8">város</div>
+<div class="tag w7">munka</div>
+<div class="tag">szerelem</div>
+<div class="tag">soha</div>
+<div class="tag w9">Budapest</div>
+<div class="tag w7">ez</div>
+<div class="tag">miután</div>
+<div class="tag">felé</div>
+<div class="tag w8">addig</div>
+<div class="tag">szemek</div>
+<div class="tag w7">évek</div>
+<div class="tag w8">vannak</div>
+<div class="tag">híd</div>
+<div class="tag">világ</div>
+<div class="tag w9">mesél</div>
+<div class="tag">miről</div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+<div class="tag"></div>
+
+</div>';
+  switch($delta) {
+    case 'tag_cloud' :
+      $block['content'] = $content;
+      break;
+  }
+ 
+  return $block;
+}
+
+
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function motor_form_alter(&$form, &$form_state, $form_id) {
+  
+ 
+  $form['field_source_place']['und']['#default_value'][] = arg(3);
+  
+  $form['field_source_place']['und']['#type'] = 'hidden';
+  //dpm($form);
+  
+  if ($form_id == "tipp_node_form") {
+    $form['actions']['submit']['#value'] = 'Ott van!';
+    }
+}
+
+function prox2word($prox) {
+  $prox = $prox * 1000;
+  $node = node_load(arg(1));
+  $place_nid = $node->field_source_place['und'][0]['nid'];
+  $cookies = array();
+  if (isset($_COOKIE['Drupal_visitor_lattammar'])) {
+    $cookies = explode(',', $_COOKIE['Drupal_visitor_lattammar']);
+  }
+  if (!in_array($place_nid, $cookies)) {
+    $cookies[] = $place_nid;
+  }
+  $cookies_save = implode(',', $cookies);
+  user_cookie_save(array('lattammar' => $cookies_save));
+  $output = 'A tipped ' . (int)($prox) . 'méterre van a helyszíntől!';
+  if ($prox < 200) {
+    
+    $output.= "ez igen!";
+  }
+  
+  return $output;
+}
+
+
+function solved($nid) {
+  if (!isset($_COOKIE['Drupal_visitor_lattammar'])) {
+    return;
+  }
+  $nids = explode(',' ,$_COOKIE['Drupal_visitor_lattammar']);
+  $output = '';
+  if (in_array($nid, $nids)) {
+    $output.= '<div class="solved"></div>';;
+  }
+  return $output;
+}
+
+
+
+
+
+
+
+
+
+
+
