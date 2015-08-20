@@ -116,6 +116,17 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == "tipp_node_form") {
     $form['actions']['submit']['#value'] = 'Ott van!';
     
+    
+    
+    $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => arg(3)))->fetchObject();
+    $query = db_query('SELECT * FROM {field_data_field_qid} WHERE qid = :qid', array(':qid' => $query->quid))->fetchObject();
+    $def = node_load($query->entity_id);
+    $lat = $def->field_point['und'][0]['lat'];
+    $lon = $def->field_point['und'][0]['lon'];
+    
+    $form['field_point']['und'][0]['geom']['#default_value']['lat'] = $lat;
+    $form['field_point']['und'][0]['geom']['#default_value']['lon'] = $lon;
+    
     $prev_tipp_nid = arg(4);
     if (isset($prev_tipp_nid)) {
       $prev_tipp = node_load(arg(4));
@@ -126,6 +137,7 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
       $form['field_point']['und'][0]['geom']['#default_value']['lon'] = $lon;
     }
   }
+
 }
 
 function prox2word($prox) {
