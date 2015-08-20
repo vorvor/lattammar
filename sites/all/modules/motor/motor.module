@@ -122,19 +122,20 @@ function prox2word($prox) {
   $prox = $prox * 1000;
   $node = node_load(arg(1));
   $place_nid = $node->field_source_place['und'][0]['nid'];
-  $cookies = array();
-  if (isset($_COOKIE['Drupal_visitor_lattammar'])) {
-    $cookies = explode(',', $_COOKIE['Drupal_visitor_lattammar']);
-  }
-  if (!in_array($place_nid, $cookies)) {
-    $cookies[] = $place_nid;
-  }
-  $cookies_save = implode(',', $cookies);
-  user_cookie_save(array('lattammar' => $cookies_save));
-  $output = 'A tipped ' . (int)($prox) . 'méterre van a helyszíntől!';
+  
+  $output = 'A tipped ' . (int)($prox) . ' méterre van a helyszíntől!';
   if ($prox < 200) {
     
     $output.= "ez igen!";
+    $cookies = array();
+    if (isset($_COOKIE['Drupal_visitor_lattammar'])) {
+      $cookies = explode(',', $_COOKIE['Drupal_visitor_lattammar']);
+    }
+    if (!in_array($place_nid, $cookies)) {
+      $cookies[] = $place_nid;
+    }
+    $cookies_save = implode(',', $cookies);
+    user_cookie_save(array('lattammar' => $cookies_save));
   }
   
   return $output;

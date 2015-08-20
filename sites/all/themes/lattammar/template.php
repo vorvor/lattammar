@@ -141,7 +141,7 @@ function lattammar_node_view_alter(&$build) {
     
     if ($node->type == 'tipp') {
         $build['links']['node']['#links']['tryagain'] = array(
-          'title' => t('Újra próbálkozom'), 
+          'title' => '< ' . t('Újra próbálkozom'), 
           'href' => 'node/add/tipp/' . $node->field_source_place['und'][0]['nid'], 
           'html' => TRUE, 
           'attributes' => array(
@@ -166,7 +166,7 @@ function lattammar_node_view_alter(&$build) {
         }
         if (!empty($node_next[0]->nid)) {
           $build['links']['node']['#links']['nextplace'] = array(
-          'title' => t('Következő hely'), 
+          'title' => t('Következő hely') . ' >', 
           'href' => 'node/add/tipp/' . $node_next[0]->nid, 
           'html' => TRUE, 
           'attributes' => array(
@@ -175,7 +175,7 @@ function lattammar_node_view_alter(&$build) {
         );
         } else {
           $build['links']['node']['#links']['newgame'] = array(
-          'title' => t('Játék vége, új játék'), 
+          'title' => t('Játék vége, új játék') . ' >', 
           'href' => 'games', 
           'html' => TRUE, 
           'attributes' => array(

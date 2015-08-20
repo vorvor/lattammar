@@ -87,6 +87,7 @@
 }
 
 .page-node-add-tipp #page-title,
+.node-type-tipp #page-title,
 .page-node-add-tipp fieldset:nth-child(1) legend,
 .page-node-add-tipp fieldset:nth-child(1) label,
 .page-node-add-tipp .geofield-gmap-search,
@@ -110,14 +111,26 @@
 }
 
 h1, h2, h3,
-.node-tipp ul.links li a {
+.node-tipp ul.links li a,
+#block-views-prox-block {
   font-family: bebas;
   font-weight: normal;
 }
 
-.node-tipp ul.links li a {
+.node-tipp ul.links li:nth-child(2) {
+  padding: 0 0 0 50px;
+}
+
+.node-tipp ul.links li a,
+#block-views-prox-block {
   font-size: 3em;
-  line-height: 1em;
+  line-height: 1.4em;
+  color: #000;
+  text-decoration: none;
+}
+
+#block-views-prox-block {
+  margin: 0;
 }
 
 #logo {
@@ -159,7 +172,11 @@ h1, h2, h3,
   font-weight: bold;
 }
 
-.node-type-tipp #block-views-source-place-block,
+.node-type-tipp #block-views-source-place-block {
+  position: absolute;
+  margin-left: 520px;
+}
+
 .node-type-tipp article {
   float: left;
 }
@@ -187,9 +204,14 @@ h1, h2, h3,
   background: url(../images/solved.png);
 }
 
+.view-games .group-title {
+  clear: both;
+  margin: 2em 0 0 0;
+}
+
 .view-games h3 {
   font-size: 2em;
-  margin: 1em 0;
+  margin: 0;
   line-height: 1.2em; 
 }
 
