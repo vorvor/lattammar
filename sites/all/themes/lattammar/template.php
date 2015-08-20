@@ -142,32 +142,33 @@ function lattammar_node_view_alter(&$build) {
     if ($node->type == 'tipp') {
         $build['links']['node']['#links']['tryagain'] = array(
           'title' => '< ' . t('Újra próbálkozom'), 
-          'href' => 'node/add/tipp/' . $node->field_source_place['und'][0]['nid'], 
+          'href' => 'node/add/tipp/' . $node->field_source_place['und'][0]['nid'] . '/' . arg(1), 
           'html' => TRUE, 
           'attributes' => array(
             'title' => 'Újrapróbálkozás',
           ),
         );
     
-  
+        $nid = $node->field_source_place['und'][0]['nid'];
         $placenode = node_load($node->field_source_place['und'][0]['nid']);
         $node = $placenode;
-       
+        
         $queues = nodequeue_load_queues_by_type($node->type);
         $subqueues = nodequeue_get_subqueues_by_node($queues, $node);
         
-        foreach ($subqueues as $queue) {
-             
-          $pos = (int)nodequeue_get_subqueue_position($queue->sqid, $node->nid);
-          if ($pos > 0) { 
-            $node_next = nodequeue_load_nodes($queue->sqid, FALSE, $pos, 1);
-            break;
-          }
-        }
-        if (!empty($node_next[0]->nid)) {
+        $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
+        $query = db_query('SELECT nid, position FROM {nodequeue_nodes}
+                          WHERE position = :pos
+                          AND qid = :qid',
+                          array(':pos' => $query->position + 1,
+                                ':qid' => $query->qid))->fetchObject();
+       
+        
+        
+        if (!empty($query)) {
           $build['links']['node']['#links']['nextplace'] = array(
           'title' => t('Következő hely') . ' >', 
-          'href' => 'node/add/tipp/' . $node_next[0]->nid, 
+          'href' => 'node/add/tipp/' . $query->nid, 
           'html' => TRUE, 
           'attributes' => array(
             'title' => 'Következő hely',

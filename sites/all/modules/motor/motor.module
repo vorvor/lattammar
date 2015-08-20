@@ -115,7 +115,13 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   
   if ($form_id == "tipp_node_form") {
     $form['actions']['submit']['#value'] = 'Ott van!';
-    }
+    $prev_tipp = node_load(arg(4));
+    $lat = $prev_tipp->field_point['und'][0]['lat'];
+    $lon = $prev_tipp->field_point['und'][0]['lon'];
+    
+    $form['field_point']['und'][0]['geom']['#default_value']['lat'] = $lat;
+    $form['field_point']['und'][0]['geom']['#default_value']['lon'] = $lon;
+  }
 }
 
 function prox2word($prox) {
