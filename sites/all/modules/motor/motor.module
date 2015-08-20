@@ -119,7 +119,7 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
     
     
     $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => arg(3)))->fetchObject();
-    $query = db_query('SELECT * FROM {field_data_field_qid} WHERE qid = :qid', array(':qid' => $query->quid))->fetchObject();
+    $query = db_query('SELECT * FROM {field_data_field_qid} WHERE qid = :qid', array(':qid' => $query->qid))->fetchObject();
     $def = node_load($query->entity_id);
     $lat = $def->field_point['und'][0]['lat'];
     $lon = $def->field_point['und'][0]['lon'];
