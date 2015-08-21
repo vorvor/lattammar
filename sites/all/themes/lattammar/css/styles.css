@@ -72,7 +72,7 @@
   width: 100%;
 }
 
-.page-node-add-tipp #page {
+.0node-add-tipp #page {
   max-width: 100%;  
 }
 
@@ -112,7 +112,8 @@
 
 h1, h2, h3,
 .node-tipp ul.links li a,
-#block-views-prox-block {
+#block-views-prox-block,
+.node-tipp-form .form-submit {
   font-family: bebas;
   font-weight: normal;
 }
@@ -133,10 +134,16 @@ h1, h2, h3,
   display: block;  
 }
 
-.node-tipp ul.links li a {
+.node-tipp ul.links li a,
+.node-tipp-form .form-submit {
   padding: 12px 14px 0 10px;
   color: #fff;
   background: #000;
+  border: none;
+}
+
+.node-tipp-form .form-submit {
+  font-size: 2em;
 }
 
 #block-views-prox-block {
@@ -218,7 +225,7 @@ h1, h2, h3,
 
 .view-games .group-title {
   clear: both;
-  margin: 2em 0 0 0;
+  
   
 }
 
@@ -244,6 +251,10 @@ h1, h2, h3,
   display: inline;
 }
 
+.view-games.view-display-id-page_1 h3 {
+  display: block;
+}
+
 .view-games h3 a {
   text-decoration: none;
   color: #000;
@@ -251,6 +262,27 @@ h1, h2, h3,
 
 .rowcount {
   margin-left: 10px;
+}
+
+.game-row {
+  overflow: hidden;
+  margin: 1em 0 0 0;
+  padding: 10px;
+  display: block;
+  position: relative;
+}
+
+.game-row a {
+  text-decoration: none;
+  color: #000;
+}
+
+.game-row:hover {
+  background: orange;
+}
+
+.page-games #content {
+  padding: 0;
 }
 
 

@@ -6,13 +6,18 @@
  *
  * @ingroup views_templates
  */
-//print dpm(array_keys(get_defined_vars()));
+
+
+$pattern = '/data-qid=\"(.*?)\"/';
+$data = reset($variables['rows']);
+preg_match($pattern, $data, $matches);
 
 ?>
+<div class="game-row"><a href="/games/<?php print $matches[1]; ?>">
 <?php if (!empty($title)): ?>
 <div style="clear: both;"></div>
 <div class="group-title">  
-  <h3><a><?php print $title; ?></a></h3><span class="rowcount"><?php print('(' . count($rows) . ' helyszín)'); ?></span>
+  <h3><?php print $title; ?></h3><span class="rowcount"><?php print('(' . count($rows) . ' helyszín)'); ?></span>
 </div>
 <?php endif; ?>
 <?php $i = 0; foreach ($rows as $id => $row): ?>
@@ -22,3 +27,5 @@
   </div>
   <?php if ($i > 4) { break;} ?>
 <?php endforeach; ?>
+</a>
+</div>
