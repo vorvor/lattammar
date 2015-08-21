@@ -142,8 +142,8 @@ h1, h2, h3,
   border: none;
 }
 
-.node-tipp ul.links li a,
-.node-tipp-form .form-submit {
+.node-tipp ul.links li a:hover,
+.node-tipp-form .form-submit:hover {
   background: orange;
 }
 
