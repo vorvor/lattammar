@@ -281,6 +281,10 @@ h1, h2, h3,
   background: orange;
 }
 
+.game-row:hover a {
+  color: #fff;
+}
+
 .page-games #content {
   padding: 0;
 }
