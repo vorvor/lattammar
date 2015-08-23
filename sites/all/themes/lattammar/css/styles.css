@@ -294,10 +294,27 @@ h1, h2, h3,
   padding: 0;
 }
 
+#secondary-menu a {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  text-decoration: none;
+}
 
 
+@media (max-width: 640px)   {
 
+#name-and-slogan {
+    font-size: 1em;
+    margin-left: 20px;
+    margin-top: 14px;
+}
 
+.view-games .views-row {
+  width: 32%;
+}
+
+}
 
 
 
