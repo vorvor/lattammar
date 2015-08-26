@@ -80,6 +80,11 @@
   padding: 0;
 }
 
+.page-node-add-tipp .views-field-field-photo-source {
+  background: rgba(255,255,255,0.7);
+  font-size: 0.8em;
+}
+
 .page-node-add-tipp fieldset {
   padding: 0;
   margin: 0;
