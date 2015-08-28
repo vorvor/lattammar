@@ -323,7 +323,7 @@ h1, h2, h3,
   text-decoration: none;
 }
 
-.skipButton a:hover {
+.skipButton:hover {
   background: orange;
 }
 
