@@ -327,6 +327,34 @@ h1, h2, h3,
   background: orange;
 }
 
+.view-places-per-game .views-row {
+  margin-left: 5px;
+  float: left;
+  
+}
+
+#block-views-places-per-game-block {
+  float: right;
+  margin-top: -100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 640px)   {
 
