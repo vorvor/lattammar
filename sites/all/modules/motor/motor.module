@@ -99,6 +99,11 @@ function motor_block_view($delta='') {
   return $block;
 }
 
+function game_of_place($nid) {
+  $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
+  return $query->qid;
+}
+
 function nextplace($nid) {
 
   $node = node_load($nid);
