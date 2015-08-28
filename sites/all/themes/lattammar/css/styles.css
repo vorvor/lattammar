@@ -339,7 +339,13 @@ h1, h2, h3,
   margin-right: 5px;
 }
 
-
+.view-places-per-game .views-row .active {
+  background: orange;
+  padding: 4px;
+  line-height: 0;
+  margin-top: -4px;
+}
+}
 
 
 
