@@ -306,6 +306,27 @@ h1, h2, h3,
   text-decoration: none;
 }
 
+.skipButton {
+  padding: 12px 14px 0 10px;
+    
+    background: #000;
+    border: none;
+    font-size: 2em;
+        font-family: bebas;
+    font-weight: normal;
+    display: inline;
+    margin-left: 10px;
+}
+
+.skipButton a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.skipButton a:hover {
+  background: orange;
+}
+
 
 @media (max-width: 640px)   {
 

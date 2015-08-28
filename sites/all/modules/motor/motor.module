@@ -99,7 +99,22 @@ function motor_block_view($delta='') {
   return $block;
 }
 
+function nextplace($nid) {
 
+  $node = node_load($nid);
+  
+  $queues = nodequeue_load_queues_by_type($node->type);
+  $subqueues = nodequeue_get_subqueues_by_node($queues, $node);
+  
+  $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
+  $query = db_query('SELECT nid, position FROM {nodequeue_nodes}
+                    WHERE position = :pos
+                    AND qid = :qid',
+                    array(':pos' => $query->position + 1,
+                          ':qid' => $query->qid))->fetchObject();
+  
+  return $query->nid;
+}
 
 
 /**
@@ -115,6 +130,12 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   
   if ($form_id == "tipp_node_form") {
     $form['actions']['submit']['#value'] = 'Ott van!';
+    $form['actions']['skip'] = array(
+      '#markup' => l('> Kihagyom, következő helyszín', '/node/add/tipp/' . nextplace(arg(3))),
+      '#weight' => 6,
+      '#prefix' => '<div class="skipButton">',
+      '#suffix' => '</div>',
+    );
     
     
     
