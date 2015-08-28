@@ -113,7 +113,8 @@ function nextplace($nid) {
                     array(':pos' => $query->position + 1,
                           ':qid' => $query->qid))->fetchObject();
   
-  return $query->nid;
+  (is_object($query)) ? $nnid = $query->nid : $nnid = 0;
+  return $nnid;
 }
 
 
