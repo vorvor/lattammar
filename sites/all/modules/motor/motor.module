@@ -172,8 +172,8 @@ function prox2word($prox) {
   $prox = $prox * 1000;
   $node = node_load(arg(1));
   $place_nid = $node->field_source_place['und'][0]['nid'];
-  
-  $output = 'A tipped ' . (int)($prox) . ' méterre van a helyszíntől!';
+  $output = array();
+  $output['text'] = 'A tipped ' . (int)($prox) . ' méterre van a helyszíntől!';
   if ($prox < 200) {
     
     $output.= "ez igen!";
@@ -187,7 +187,7 @@ function prox2word($prox) {
     $cookies_save = implode(',', $cookies);
     user_cookie_save(array('lattammar' => $cookies_save));
   }
-  
+  $output['int'] = (int)$prox;
   return $output;
 }
 

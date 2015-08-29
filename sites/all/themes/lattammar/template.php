@@ -140,14 +140,20 @@ function lattammar_node_view_alter(&$build) {
     $node = node_load(arg(1));
     
     if ($node->type == 'tipp') {
-        $build['links']['node']['#links']['tryagain'] = array(
-          'title' => '< ' . t('Újra próbálkozom'), 
-          'href' => 'node/add/tipp/' . $node->field_source_place['und'][0]['nid'] . '/' . arg(1), 
-          'html' => TRUE, 
-          'attributes' => array(
-            'title' => 'Újrapróbálkozás',
-          ),
-        );
+        $block = module_invoke('views', 'block_view', 'prox-block');
+        $intprox = preg_replace("/[^0-9]/","",strip_tags($block['content']['#markup']));
+        if ($intprox > 200) {
+          $build['links']['node']['#links']['tryagain'] = array(
+            'title' => '< ' . t('Újra próbálkozom'), 
+            'href' => 'node/add/tipp/' . $node->field_source_place['und'][0]['nid'] . '/' . arg(1), 
+            'html' => TRUE, 
+            'attributes' => array(
+              'title' => 'Újrapróbálkozás',
+            ),
+          );
+        }
+        
+        
     
         $nid = $node->field_source_place['und'][0]['nid'];
         $placenode = node_load($node->field_source_place['und'][0]['nid']);
