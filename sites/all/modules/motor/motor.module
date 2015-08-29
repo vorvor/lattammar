@@ -176,7 +176,7 @@ function prox2word($prox) {
   $output['text'] = 'A tipped ' . (int)($prox) . ' méterre van a helyszíntől!';
   if ($prox < 200) {
     
-    $output.= "ez igen!";
+    $output['text'].= "ez igen!";
     $cookies = array();
     if (isset($_COOKIE['Drupal_visitor_lattammar'])) {
       $cookies = explode(',', $_COOKIE['Drupal_visitor_lattammar']);
