@@ -424,10 +424,15 @@ h1, h2, h3,
     width: 100%;
   }
   
-  #secondary-menu a {
+  #secondary-menu a,
+  #main-menu a {
     color: #fff;
     font-size: 1.7em;
     font-family: bebas;
+  }
+  
+  #main-menu {
+    padding: 8px 0 3px 0;
   }
   
   #secondary-menu a:hover {
