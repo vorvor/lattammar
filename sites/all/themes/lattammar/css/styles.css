@@ -359,7 +359,9 @@ h1, h2, h3,
   padding-left: 15px;
 }
 
-
+.view-prox {
+  line-height: 1em;
+}
 
 
 
@@ -388,15 +390,20 @@ h1, h2, h3,
     height: 100px;
   }
   
-  .page-noed-add-tipp .skipButton {
+  .page-node-add-tipp .skipButton {
     display: block;
     margin: 5px 0 0 0;
   }
   
   .header__site-name {
-    font-size: 1.7em;
+    font-size: 1.5em;
   }
 
+  .node-type-tipp .geofieldMap {
+    width: 100%;
+    
+  }
+  
 }
 
 
