@@ -368,6 +368,24 @@ h1, h2, h3,
   line-height: 1em;
 }
 
+.node-type-tipp .messages {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -457,6 +475,10 @@ h1, h2, h3,
     width: 100%;
   }
   
+  .node-tipp ul.links li {
+    padding: 10px 0 0 0;
+  }
+  
   .page-node-add-tipp .skipButton {
     font-size: 1.6em;
     text-align: center;
@@ -466,6 +488,10 @@ h1, h2, h3,
     line-height: 1.2em;
     display: block;
     width: 100px;
+  }
+  
+  #block-views-prox-block {
+    font-size: 2em;
   }
   
 }
