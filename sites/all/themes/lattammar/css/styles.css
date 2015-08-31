@@ -477,6 +477,12 @@ h1, h2, h3,
   
   #content .node-tipp ul.links li {
     padding: 10px 0 0 0;
+    display: block;
+  }
+  
+  .node-tipp ul.links {
+    overflow: hidden;
+    marhin: 0;
   }
   
   .node-tipp ul.links li a {
@@ -501,6 +507,7 @@ h1, h2, h3,
   
   #block-views-prox-block {
     font-size: 2em;
+    margin-top: 10px;
   }
   
 }
