@@ -381,10 +381,39 @@ h1, h2, h3,
 
 @media (max-width: 640px)   {
 
+  #header {
+    padding :0;
+  }
+
   #name-and-slogan {
-      font-size: 1em;
-      margin-left: 20px;
-      margin-top: 14px;
+    font-size: 1.4em;
+    margin-left: 7px;
+    margin-top: 11px;
+        float: left;
+    
+    width: 70%;
+  }
+  
+  .header__site-name {
+    line-height: 1em;
+  }
+  
+  .header__secondary-menu {
+    float: left;
+    clear: both;
+    padding: 10px 10px 5px 10px;
+    background: #298197;
+    width: 100%;
+  }
+  
+  #secondary-menu a {
+    color: #fff;
+    font-size: 1.7em;
+    font-family: bebas;
+  }
+  
+  #secondary-menu a:hover {
+    color: orange;
   }
   
   .view-games .views-row {
@@ -401,16 +430,42 @@ h1, h2, h3,
   }
   
   .header__site-name {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
+  
+
 
   .node-type-tipp .geofieldMap {
-    width: 100%;
+    width: 100% !important;
     
+  }
+  
+  .node-type-tipp #block-views-source-place-block {
+    margin-left: auto;
+    right: 0;
+  }
+  
+  .node-type-tipp #block-views-source-place-block img {
+    height: 100px;
   }
   
   .imhere {
     display: block;
+  }
+  
+  .node-tipp ul.links li a, .node-tipp-form .form-submit {
+    width: 100%;
+  }
+  
+  .page-node-add-tipp .skipButton {
+    font-size: 1.6em;
+    text-align: center;
+  }
+  
+  .page-node-add-tipp .views-field-field-photo-source {
+    line-height: 1.2em;
+    display: block;
+    width: 100px;
   }
   
 }

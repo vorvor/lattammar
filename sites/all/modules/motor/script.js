@@ -2,7 +2,7 @@
   
   function GEOprocess(position) {
       // update the page to show we have the lat and long and explain what we do next
-    $('#geoMOB').prepend('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
+    //$('#geoMOB').prepend('Latitude: ' + position.coords.latitude + ' Longitude: ' + position.coords.longitude);
     $('#edit-field-point-und-0-geom-lat').val(position.coords.latitude);
     $('#edit-field-point-und-0-geom-lon').val(position.coords.longitude);
     $('#tipp-node-form').submit();
