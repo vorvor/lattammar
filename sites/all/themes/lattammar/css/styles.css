@@ -460,7 +460,7 @@ h1, h2, h3,
   
   .node-type-tipp #block-views-source-place-block {
     margin-left: auto;
-    right: 0;
+    right: 10px;
   }
   
   .node-type-tipp #block-views-source-place-block img {
@@ -475,13 +475,17 @@ h1, h2, h3,
     width: 100%;
   }
   
-  .node-tipp ul.links li {
+  #content .node-tipp ul.links li {
     padding: 10px 0 0 0;
   }
   
   .node-tipp ul.links li a {
     display: block;
     font-size: 1.7em;
+  }
+  
+  .node-type-tipp article {
+    width: 100%;
   }
   
   .page-node-add-tipp .skipButton {
