@@ -500,8 +500,9 @@ h1, h2, h3,
   }
   
   .page-node-add-tipp .skipButton {
-    font-size: 1.6em;
+    font-size: 2em;
     text-align: center;
+        padding: 17px 0 8px;
   }
   
   .page-node-add-tipp .views-field-field-photo-source {
