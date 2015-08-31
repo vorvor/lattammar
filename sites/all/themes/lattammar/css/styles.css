@@ -180,6 +180,7 @@ h1, h2, h3,
   padding: 0;
   background: #298197;
   height: auto;
+  clear: both;
 }
 
 #navigation ul.links {
@@ -332,7 +333,7 @@ h1, h2, h3,
 .view-places-per-game .views-row {
   margin-left: 5px;
   float: left;
-  
+  position: relative;
 }
 
 #block-views-places-per-game-block {
@@ -353,7 +354,10 @@ h1, h2, h3,
 }
 
 
-
+.view-games .view-header,
+.page-games #page-title {
+  padding-left: 15px;
+}
 
 
 
@@ -370,15 +374,28 @@ h1, h2, h3,
 
 @media (max-width: 640px)   {
 
-#name-and-slogan {
-    font-size: 1em;
-    margin-left: 20px;
-    margin-top: 14px;
-}
-
-.view-games .views-row {
-  width: 32%;
-}
+  #name-and-slogan {
+      font-size: 1em;
+      margin-left: 20px;
+      margin-top: 14px;
+  }
+  
+  .view-games .views-row {
+    width: 32%;
+  }
+  
+  .view-oneplace .views-field-field-photo img {
+    height: 100px;
+  }
+  
+  .page-noed-add-tipp .skipButton {
+    display: block;
+    margin: 5px 0 0 0;
+  }
+  
+  .header__site-name {
+    font-size: 1.7em;
+  }
 
 }
 
