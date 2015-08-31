@@ -321,6 +321,11 @@ h1, h2, h3,
     margin-left: 10px;
 }
 
+.imhere {
+  background: #298197;
+  display: none;
+}
+
 .skipButton a {
   color: #fff;
   text-decoration: none;
@@ -402,6 +407,10 @@ h1, h2, h3,
   .node-type-tipp .geofieldMap {
     width: 100%;
     
+  }
+  
+  .imhere {
+    display: block;
   }
   
 }

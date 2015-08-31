@@ -17,6 +17,12 @@ function motor_menu() {
     'page callback' => 'motor_stat',
     'access arguments' => array('access content'),
   );
+
+  $items['mgeo'] = array(
+    'title' => 'Mobile GEO',
+    'page callback' => 'motor_mobileGEO',
+    'access arguments' => array('administer content'),
+  );
   
   return $items;
 }
@@ -127,7 +133,7 @@ function nextplace($nid) {
  * Implements hook_form_alter().
  */
 function motor_form_alter(&$form, &$form_state, $form_id) {
-  
+  //dpm($form_state);
  
   $form['field_source_place']['und']['#default_value'][] = arg(3);
   
@@ -142,7 +148,12 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
       '#prefix' => '<div class="skipButton">',
       '#suffix' => '</div>',
     );
-    
+    $form['actions']['geomob'] = array(
+      '#markup' => 'Itt vagyok',
+      '#weight' => 6,
+      '#prefix' => '<div id="geoMOB" class="skipButton imhere"><a href="#">',
+      '#suffix' => '</a></div>',
+    );
     
     
     $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => arg(3)))->fetchObject();
@@ -204,6 +215,10 @@ function solved($nid) {
   return $output;
 }
 
+function motor_mobileGEO() {
+  $output = '<a href="#" onclick="geoMOB();">GET</a>';
+  return $output;
+}
 
 
 
