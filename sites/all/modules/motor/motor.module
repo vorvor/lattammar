@@ -217,6 +217,10 @@ function solved($nid) {
 
 function motor_mobileGEO() {
   $output = '<a href="#" onclick="geoMOB();">GET</a>';
+  $node = new stdClass(); // Create a new node object
+  $node->type = "article"; // Or page, or whatever content type you like
+  node_object_prepare($node);
+
   return $output;
 }
 
