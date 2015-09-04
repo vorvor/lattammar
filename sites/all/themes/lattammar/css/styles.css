@@ -220,9 +220,7 @@ h1, h2, h3,
   text-align: center;
 }
 
-.view-games .views-row:hover {
-  background: orange;
-}
+
 
 .views-label-field-level {
   font-size: 0.6em;
