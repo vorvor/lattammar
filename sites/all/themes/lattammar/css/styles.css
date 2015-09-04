@@ -186,9 +186,7 @@ h2.node-title a {
   background: #298197;
   height: auto;
   clear: both;
-  position: absolute;
-  top: 0;
-  width: 100%;
+  
 }
 
 #navigation ul.links {
