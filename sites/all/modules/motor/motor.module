@@ -155,10 +155,12 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
       '#suffix' => '</a></div>',
     );
     
+    /*
     $form['fb_comments'] = array(
       '#markup' => '<div class="fb-comments" data-href="http://lattammar.nemkf.com/node/' . arg(3) . '" data-width="100%" data-numposts="5"></div>',
       '#weight' => 100,
     );
+    */
     
     
     $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => arg(3)))->fetchObject();
@@ -248,6 +250,48 @@ function motor_mobileGEO($nid) {
   
   return $output;
 }
+
+
+function motor_block_info() {
+  $blocks = array();
+  $blocks['facebook_comments'] = array(
+    'info' => t('FB comments'),
+  );
+  return $blocks;
+}
+
+function motor_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'facebook_comments':
+      $block['subject'] = '';
+      $block['content'] = '<div class="fb-comments" data-href="http://lattammar.nemkf.com/node/' . arg(3) . '" data-width="100%" data-numposts="5"></div>';
+      break;
+  }
+  return $block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
