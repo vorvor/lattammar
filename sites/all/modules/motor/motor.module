@@ -33,77 +33,7 @@ function motor_node($nid) {
   print drupal_render($node);
 }
 
-function motor_block_info() {
-  $blocks = array();
-  $blocks['tag_cloud'] = array(
-    'info' => t('Tag cloud'),
-  );
- 
-  return $blocks;
-}
 
-function motor_block_view($delta='') {
-  $block = array();
-  $content = '<div id="tag-cloud">
-<div class="tag w8">reggel</div>
-<div class="tag w9">út</div>
-<div class="tag">senki</div>
-<div class="tag">állomás</div>
-<div class="tag">kettő</div>
-<div class="tag">most</div>
-<div class="tag w8">ház</div>
-<div class="tag">idő</div>
-<div class="tag w7">hely</div>
-<div class="tag">éjszaka</div>
-<div class="tag w9">metro</div>
-<div class="tag">emberek</div>
-<div class="tag w10" style="left:40%; top: 30%;">Duna</div>
-<div class="tag">utca</div>
-<div class="tag">élet</div>
-<div class="tag">miért</div>
-<div class="tag w8">város</div>
-<div class="tag w7">munka</div>
-<div class="tag">szerelem</div>
-<div class="tag">soha</div>
-<div class="tag w9">Budapest</div>
-<div class="tag w7">ez</div>
-<div class="tag">miután</div>
-<div class="tag">felé</div>
-<div class="tag w8">addig</div>
-<div class="tag">szemek</div>
-<div class="tag w7">évek</div>
-<div class="tag w8">vannak</div>
-<div class="tag">híd</div>
-<div class="tag">világ</div>
-<div class="tag w9">mesél</div>
-<div class="tag">miről</div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-<div class="tag"></div>
-
-</div>';
-  switch($delta) {
-    case 'tag_cloud' :
-      $block['content'] = $content;
-      break;
-  }
- 
-  return $block;
-}
 
 function game_of_place($nid) {
   $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
