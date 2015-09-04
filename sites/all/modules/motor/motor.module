@@ -155,6 +155,11 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
       '#suffix' => '</a></div>',
     );
     
+    $form['fb_comments'] = array(
+      '#markup' => '<div class="fb-comments" data-href="http://lattammar.nemkf.com/node/' . arg(3) . '" data-width="100%" data-numposts="5"></div>',
+      '#weight' => 100,
+    );
+    
     
     $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => arg(3)))->fetchObject();
     $query = db_query('SELECT * FROM {field_data_field_qid} WHERE field_qid_value = :qid', array(':qid' => $query->qid))->fetchObject();
