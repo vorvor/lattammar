@@ -152,33 +152,74 @@ function solved($nid) {
   return $output;
 }
 
-function motor_mobileGEO($nid) {
-  $output = '<a href="#" onclick="geoMOB();">GET</a>';
-  $node = node_load($nid); // Create a new node object
+function motor_generate_machine_name($name) {
+  $unwanted_array = array('Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+                          'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+                          'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+                          'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+                          'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ő' => 'o', 'ü' => 'u', 'ű' => 'u' );
+  $name = strtolower($name);
+  $name = strtr($name, $unwanted_array );
+  return $name;
+}
+
+function motor_create_nq($name) {
   
-  foreach ($node->field_photos['und'] as $photo) {
-    dpm($photo);
-    $node = new stdClass();  // Create a new node object
-    $node->type = 'place';  // Content type
-    $node->language = LANGUAGE_NONE;  // Or e.g. 'en' if locale is enabled
-    node_object_prepare($node); 
-    // Create image File object and associate with Image field.
-    $file = new StdClass();
-    $file->uid = 1;
-    $file->uri = $photo['uri'];
-    $file->filemime = file_get_mimetype($file->uri);
-    $file->status = 1;
-    $file->display = 1;
-    $file->description = "";  
-    $dest = file_default_scheme() . '://';
-    $file = file_copy($file, $dest);
-    $node->field_photo[LANGUAGE_NONE][0] = (array)$file;
-    $node = node_submit($node);
-    node_save($node);
+  
+  $r = 0;
+  
+  
+  $machine_name = motor_generate_machine_name($name);
+
+
+  
+  $nname = $machine_name;
+  while (nodequeue_machine_name_exists($nname)) {
+    $r++;
+    $nname = $name . '_' . $r;
   }
+  
+  $machine_name = $nname;
+
+
+
+  
+  $output = '<a href="#" onclick="geoMOB();">GET</a>';
+  $nodequeue = new stdClass;
+  $nodequeue->api_version = 2;
+  $nodequeue->name = $machine_name;
+  $nodequeue->title = $name;
+  $nodequeue->subqueue_title = '';
+  $nodequeue->size = 0;
+  $nodequeue->link = '';
+  $nodequeue->link_remove = '';
+  $nodequeue->owner = 'nodequeue';
+  $nodequeue->show_in_ui = 1;
+  $nodequeue->show_in_tab = 1;
+  $nodequeue->show_in_links = 1;
+  $nodequeue->insert_at_front = 1;
+  $nodequeue->reference = '0';
+  $nodequeue->reverse = 1;
+  $nodequeue->i18n = 0;
+  $nodequeue->roles = array();
+  $nodequeue->types = array(
+    0 => 'place',
+  );
+  $nodequeue->add_subqueue = array(
+    1 => 'Recommended content',
+  );
+ 
+
+  nodequeue_save($nodequeue);
+
   
   
   return $output;
+}
+
+function motor_delete_nq($name) {
+  $machine_name = motor_generate_machine_name($name);
+  nodequeue_delete($machine_name);
 }
 
 
@@ -186,6 +227,9 @@ function motor_block_info() {
   $blocks = array();
   $blocks['facebook_comments'] = array(
     'info' => t('FB comments'),
+  );
+  $blocks['facebook_like'] = array(
+    'info' => t('FB like&share'),
   );
   return $blocks;
 }
@@ -197,10 +241,13 @@ function motor_block_view($delta = '') {
       $block['subject'] = '';
       $block['content'] = '<div class="fb-comments" data-href="http://lattammar.nemkf.com/node/' . arg(3) . '" data-width="100%" data-numposts="5"></div>';
       break;
+    case 'facebook_like':
+      $block['subject'] = '';
+      $block['content'] = '<div class="fb-like" data-href="https://lattammar.nemkf.com/node/' . arg(3) . '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
+      break;
   }
   return $block;
 }
-
 
 
 
