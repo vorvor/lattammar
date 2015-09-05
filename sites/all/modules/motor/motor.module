@@ -249,7 +249,7 @@ function motor_block_view($delta = '') {
   return $block;
 }
 
-function create_places_from_mail($nid) {
+function motor_create_places_from_mail($nid) {
   $node = node_load($nid); // Create a new node object
   
   foreach ($node->field_photos['und'] as $photo) {
