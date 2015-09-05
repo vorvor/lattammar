@@ -249,6 +249,31 @@ function motor_block_view($delta = '') {
   return $block;
 }
 
+function create_places_from_mail($nid) {
+  $node = node_load($nid); // Create a new node object
+  
+  foreach ($node->field_photos['und'] as $photo) {
+    dpm($photo);
+    $node = new stdClass();  // Create a new node object
+    $node->type = 'place';  // Content type
+    $node->language = LANGUAGE_NONE;  // Or e.g. 'en' if locale is enabled
+    node_object_prepare($node); 
+    // Create image File object and associate with Image field.
+    $file = new StdClass();
+    $file->uid = 1;
+    $file->uri = $photo['uri'];
+    $file->filemime = file_get_mimetype($file->uri);
+    $file->status = 1;
+    $file->display = 1;
+    $file->description = "";  
+    $dest = file_default_scheme() . '://';
+    $file = file_copy($file, $dest);
+    $node->field_photo[LANGUAGE_NONE][0] = (array)$file;
+    $node = node_submit($node);
+    node_save($node);
+  }
+  
+}
 
 
 
