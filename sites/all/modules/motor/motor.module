@@ -69,6 +69,7 @@ function nextplace($nid) {
  * Implements hook_form_alter().
  */
 function motor_form_alter(&$form, &$form_state, $form_id) {
+  global $user;
   dpm($form_id);
  
   $form['field_source_place']['und']['#default_value'][] = arg(3);
@@ -126,6 +127,12 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   
   if ($form_id == 'views_form_games_admin_block_1') {
     dpm($form);
+    foreach ($form['qids']['#options'] as $key=>$value) {
+      $uid = variable_get($key . '_user');
+      if ($uid !== $user->uid) {
+        unset($form['qids']['#options'][$key]);
+      }
+    }
   }
 
 }
@@ -345,7 +352,8 @@ function motor_game_admin() {
 }
 
 function motor_nq_perm($qid, $uid) {
-  $user = variable_get($qid . '_user');
+  global $user;
+  $uid = variable_get($qid . '_user');
   if ($user == $uid) {
     return true;
   } else {
