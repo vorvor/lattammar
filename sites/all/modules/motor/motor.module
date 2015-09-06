@@ -130,7 +130,7 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
     foreach ($form['qids']['#options'] as $key=>$value) {
       $uid = variable_get($key . '_user');
       if ($uid !== $user->uid) {
-        unset($form['qids']['#options'][$key]);
+        //unset($form['qids']['#options'][$key]);
       }
     }
   }
