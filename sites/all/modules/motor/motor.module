@@ -341,7 +341,7 @@ function motor_game_admin_form($form, &$form_state) {
   }
   */
    $form['game_name'] = array(
-    '#title' => t('New game'),
+    '#title' => t('Create new game'),
     '#type' => 'textfield',
    );
    
