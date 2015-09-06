@@ -259,6 +259,9 @@ function motor_block_info() {
   $blocks['facebook_like'] = array(
     'info' => t('FB like&share'),
   );
+  $blocks['create_new_game'] = array(
+    'info' => t('Create new game'),
+  );
 
   return $blocks;
 }
@@ -273,6 +276,11 @@ function motor_block_view($delta = '') {
     case 'facebook_like':
       $block['subject'] = '';
       $block['content'] = '<div class="fb-like" data-href="https://lattammar.nemkf.com/node/' . arg(3) . '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
+      break;
+     case 'create_new_game':
+      $form = drupal_get_form('motor_game_admin_form');
+      $block['subject'] = '';
+      $block['content'] = drupal_render($form);
       break;
   }
   return $block;
