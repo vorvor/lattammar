@@ -1,7 +1,13 @@
 <?php
 
 
-
+function motor_permission() {
+  return array(
+    'game admin' => array(
+      'title' => t('Create new game (nodequeue)'),
+    )
+  );
+}
 
 function motor_menu() {
   global $quid;
@@ -18,10 +24,10 @@ function motor_menu() {
     'access arguments' => array('access content'),
   );
 
-  $items['mgeo'] = array(
-    'title' => 'Mobile GEO',
-    'page callback' => 'motor_mobileGEO',
-    'access arguments' => array('administer content'),
+  $items['game_admin'] = array(
+    'title' => 'Game admin',
+    'page callback' => 'motor_game_admin',
+    'access arguments' => array('game admin'),
   );
   
   return $items;
@@ -63,12 +69,12 @@ function nextplace($nid) {
  * Implements hook_form_alter().
  */
 function motor_form_alter(&$form, &$form_state, $form_id) {
-  //dpm($form_state);
+  dpm($form_id);
  
   $form['field_source_place']['und']['#default_value'][] = arg(3);
   
   $form['field_source_place']['und']['#type'] = 'hidden';
-  //dpm($form);
+  
   
   if ($form_id == "tipp_node_form") {
     $form['actions']['submit']['#value'] = 'Ott van!';
@@ -113,7 +119,16 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
       $form['field_point']['und'][0]['geom']['#default_value']['lon'] = $lon;
     }
   }
+  
+  if ($form_id == 'nodequeue_edit_queue_form') {
+    $form['#submit'][] = 'motor_nq_usersave';
+  }
 
+}
+
+function motor_nq_usersave($form, $form_state) {
+  global $user;
+  variable_set($form_state['values']['qid'] . '_user', $user->uid);
 }
 
 function prox2word($prox) {
@@ -206,15 +221,16 @@ function motor_create_nq($name) {
     0 => 'place',
   );
   $nodequeue->add_subqueue = array(
-    1 => 'Recommended content',
+    1 => $name,
   );
  
 
-  nodequeue_save($nodequeue);
+  $nq = nodequeue_save($nodequeue);
+  drupal_set_message($nq . ' nodequeue saved.');
 
   
   
-  return $output;
+  return $nq;
 }
 
 function motor_delete_nq($name) {
@@ -231,6 +247,7 @@ function motor_block_info() {
   $blocks['facebook_like'] = array(
     'info' => t('FB like&share'),
   );
+
   return $blocks;
 }
 
@@ -251,12 +268,14 @@ function motor_block_view($delta = '') {
 
 function motor_create_places_from_mail($nid) {
   $node = node_load($nid); // Create a new node object
-  
+  $user = user_load_by_mail($node->field_from['und'][0]['value']);
+  $uid = $user->uid;
   foreach ($node->field_photos['und'] as $photo) {
     dpm($photo);
     $node = new stdClass();  // Create a new node object
     $node->type = 'place';  // Content type
     $node->language = LANGUAGE_NONE;  // Or e.g. 'en' if locale is enabled
+    $node->uid = $uid;
     node_object_prepare($node); 
     // Create image File object and associate with Image field.
     $file = new StdClass();
@@ -276,8 +295,59 @@ function motor_create_places_from_mail($nid) {
 }
 
 
+function motor_game_admin_form($form, &$form_state) {
+  /*
+  global $user;
+  $results = db_query('SELECT * FROM {node} WHERE type = :type AND uid = :user',
+                      array(':type' => 'place',
+                            ':user' => $user->uid));
+   $form = array();
+  foreach ($results as $row) {
+    $node = node_load($row->nid);
+    $form['place_' . $row->nid] = array(
+      '#markup' => '<img src="' . image_style_url('box', $node->field_photo['und'][0]['uri']) . '">',
+    );
+    $form['place_' . $row->nid . '_selected'] = array(
+      '#type' => 'checkbox',
+    );
+  }
+  */
+   $form['game_name'] = array(
+    '#title' => t('New game'),
+    '#type' => 'textfield',
+   );
+   
+   $form['game_save'] = array(
+    '#value' => 'Mentés',
+    '#type' => 'submit',
+   );
+   return $form;
+}
 
+function motor_game_admin_form_submit($form, &$form_state) {
+  dpm($form_state);
+  global $user;
+  
+  $nq = motor_create_nq($form_state['values']['game_name']);
+  variable_set($nq . '_user', $user->uid);
+}
 
+function motor_game_admin() {
+  $output = 'ok';
+ 
+  $form = drupal_get_form('motor_game_admin_form');
+  $output.= drupal_render($form);
+  return $output;
+}
+
+function motor_nq_perm($qid, $uid) {
+  $user = variable_get($qid . '_user');
+  if ($user == $uid) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 
 
