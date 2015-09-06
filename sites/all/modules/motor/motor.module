@@ -126,12 +126,13 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   }
   
   if ($form_id == 'views_form_games_admin_block_1') {
-    dpm($form['qids']);
-    foreach ($form['qids']['#options'] as $key=>$value) {
-      $uid = variable_get($key . '_user');
-      dpm($uid);
-      if ($uid !== $user->uid) {
-        unset($form['qids']['#options'][$key]);
+    if (isset($form['qids'])) {
+      foreach ($form['qids']['#options'] as $key=>$value) {
+        $uid = variable_get($key . '_user');
+        dpm($uid);
+        if ($uid !== $user->uid) {
+          unset($form['qids']['#options'][$key]);
+        }
       }
     }
   }
