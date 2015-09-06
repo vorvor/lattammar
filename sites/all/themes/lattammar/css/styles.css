@@ -332,7 +332,9 @@ h2.node-title a {
 .skipButton,
 .page-user ul.primary li,
 #user-login .form-submit,
-#block-menu-menu-user-profile-menu ul.menu li {
+#block-menu-menu-user-profile-menu ul.menu li,
+#block-views-games-admin-block-1 h2.block-title,
+#block-motor-create-new-game label {
   padding: 12px 14px 0 10px;
     color: #fff;
     background: #000;
