@@ -128,8 +128,10 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'views_form_games_admin_block_1') {
     if (isset($form['qids'])) {
       foreach ($form['qids']['#options'] as $key=>$value) {
-        $uid = variable_get($key . '_user');
-        dpm($uid);
+        $uid = variable_get($key . '_user', 0);
+        if ($uid == 0) {
+          variable_set($key . '_user', 1);
+        }
         if ($uid !== $user->uid) {
           unset($form['qids']['#options'][$key]);
         }
