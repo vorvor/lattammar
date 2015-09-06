@@ -133,7 +133,7 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
         if ($uid == 0) {
           variable_set($key . '_user', 1);
         }
-        if ($uid !== $user->uid) {
+        if ($uid != $user->uid) {
           unset($form['qids']['#options'][$key]);
         }
       }
