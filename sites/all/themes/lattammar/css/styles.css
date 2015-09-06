@@ -451,11 +451,17 @@ h2.node-title a {
 }
 
 
+#block-menu-menu-user-profile-menu {
+  margin-bottom: 50px;
+}
 
+#block-menu-menu-user-profile-menu ul {
+  padding: 0;
+}
 
-
-
-
+#block-motor-create-new-game input {
+  margin-left: 10px;  
+}
 
 
 
