@@ -122,7 +122,7 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
   }
   
   if ($form_id == 'nodequeue_edit_queue_form') {
-    //$form['#submit'][] = 'motor_nq_usersave';
+    $form['#submit'][] = 'motor_nq_usersave';
   }
   
   if ($form_id == 'views_form_games_admin_block_1') {
@@ -227,21 +227,21 @@ function motor_create_nq($name) {
   $nodequeue->owner = 'nodequeue';
   $nodequeue->show_in_ui = 1;
   $nodequeue->show_in_tab = 1;
-  $nodequeue->show_in_links = 1;
-  $nodequeue->insert_at_front = 1;
+  $nodequeue->show_in_links = 0;
+  $nodequeue->insert_at_front = 0;
   $nodequeue->reference = '0';
-  $nodequeue->reverse = 1;
+  $nodequeue->reverse = 0;
   $nodequeue->i18n = 0;
   $nodequeue->roles = array();
   $nodequeue->types = array(
     0 => 'place',
   );
-  $nodequeue->add_subqueue = array(
-    1 => $name,
-  );
+  
  
 
   $nq = nodequeue_save($nodequeue);
+  $queue = nodequeue_load($nq);
+  nodequeue_add_subqueue($queue, $name);
   drupal_set_message($nq . ' nodequeue saved.');
 
   
@@ -283,6 +283,10 @@ function motor_block_view($delta = '') {
       break;
      case 'create_new_game':
       $form = drupal_get_form('motor_game_admin_form');
+      $nq = nodequeue_load(16);
+      dpm($nq);
+      $nq = nodequeue_load(14);
+      dpm($nq);
       $block['subject'] = '';
       $block['content'] = drupal_render($form);
       break;
