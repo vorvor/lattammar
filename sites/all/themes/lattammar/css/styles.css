@@ -430,9 +430,23 @@ h2.node-title a {
   float: left;
 }
 
+.view-games-admin .views-row {
+  clear: both;
+}
 
+.view-games-admin .views-row .views-field-field-photo,
+.view-games-admin .views-row .views-field-views-bulk-operations {
+  float: left;
+}
 
+.view-games-admin .views-row .views-field-views-bulk-operations .form-item {
+  margin: 0;
+}
 
+.view-games-admin .views-row .views-field-views-bulk-operations input {
+  width: 50px;
+  height: 50px;
+}
 
 
 

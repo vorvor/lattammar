@@ -283,10 +283,6 @@ function motor_block_view($delta = '') {
       break;
      case 'create_new_game':
       $form = drupal_get_form('motor_game_admin_form');
-      $nq = nodequeue_load(16);
-      dpm($nq);
-      $nq = nodequeue_load(14);
-      dpm($nq);
       $block['subject'] = '';
       $block['content'] = drupal_render($form);
       break;
