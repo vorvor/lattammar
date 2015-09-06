@@ -129,6 +129,7 @@ function motor_form_alter(&$form, &$form_state, $form_id) {
     if (isset($form['qids'])) {
       foreach ($form['qids']['#options'] as $key=>$value) {
         $uid = (int)variable_get($key . '_user', 0);
+        dpm($uid . ':' . $key);
         if ($uid == 0) {
           variable_set($key . '_user', 1);
         }
