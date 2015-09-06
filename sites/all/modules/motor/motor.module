@@ -282,6 +282,7 @@ function motor_block_view($delta = '') {
       $block['content'] = '<div class="fb-like" data-href="https://lattammar.nemkf.com/node/' . arg(3) . '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
       break;
      case 'create_new_game':
+
       $form = drupal_get_form('motor_game_admin_form');
       $block['subject'] = '';
       $block['content'] = drupal_render($form);
@@ -291,17 +292,18 @@ function motor_block_view($delta = '') {
 }
 
 function motor_create_places_from_mail($nid) {
-  $node = node_load($nid); // Create a new node object
+  $node = node_load($nid); 
   $user = user_load_by_mail($node->field_from['und'][0]['value']);
   $uid = $user->uid;
   watchdog('userid', $uid);
   foreach ($node->field_photos['und'] as $photo) {
-    dpm($photo);
+    
     $node = new stdClass();  // Create a new node object
     $node->type = 'place';  // Content type
     $node->language = LANGUAGE_NONE;  // Or e.g. 'en' if locale is enabled
+    
+    node_object_prepare($node);
     $node->uid = $uid;
-    node_object_prepare($node); 
     // Create image File object and associate with Image field.
     $file = new StdClass();
     $file->uid = $uid;
