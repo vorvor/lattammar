@@ -294,6 +294,7 @@ function motor_create_places_from_mail($nid) {
   $node = node_load($nid); // Create a new node object
   $user = user_load_by_mail($node->field_from['und'][0]['value']);
   $uid = $user->uid;
+  watchdog('userid', $uid);
   foreach ($node->field_photos['und'] as $photo) {
     dpm($photo);
     $node = new stdClass();  // Create a new node object
@@ -303,7 +304,7 @@ function motor_create_places_from_mail($nid) {
     node_object_prepare($node); 
     // Create image File object and associate with Image field.
     $file = new StdClass();
-    $file->uid = 1;
+    $file->uid = $uid;
     $file->uri = $photo['uri'];
     $file->filemime = file_get_mimetype($file->uri);
     $file->status = 1;
