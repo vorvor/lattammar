@@ -470,6 +470,29 @@ h2.node-title a {
 }
 
 
+#block-motor-create-new-game .form-item-game-name {
+  float: left;
+}
+
+#block-motor-create-new-game .form-submit {
+  clear: both;
+  margin: 24px;
+}
+
+.view-games-admin fieldset {
+  border: none;
+}
+
+.view-games-admin fieldset legend {
+  display: none;
+}
+
+.vbo-fieldset-select-all {
+    text-align: left;
+    width: 100%;
+    padding: 0.6em 0;
+}
+
 
 
 
