@@ -479,6 +479,12 @@ h2.node-title a {
   margin: 24px;
 }
 
+.view-games-admin h3 {
+      padding-top: 20px;
+  clear: both;
+  border-bottom: 1px solid #000;
+}
+
 .view-games-admin fieldset {
   border: none;
 }
