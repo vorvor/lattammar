@@ -296,6 +296,7 @@ function motor_create_places_from_mail($nid) {
   $user = user_load_by_mail($node->field_from['und'][0]['value']);
   $uid = $user->uid;
   watchdog('userid', $uid);
+  $subject = $node->field_subject['und'][0]['value'];
   foreach ($node->field_photos['und'] as $photo) {
     
     $node = new stdClass();  // Create a new node object
@@ -317,6 +318,30 @@ function motor_create_places_from_mail($nid) {
     $node->field_photo[LANGUAGE_NONE][0] = (array)$file;
     $node = node_submit($node);
     node_save($node);
+    
+    if (!empty($subject)) {
+      $fq = db_query('SELECT * FROM nodequeue_queue WHERE name = :name',
+                     array(':name' => $subject))->fetchObject();
+     
+      if (!empty($fq)) {
+        $qid = $fq->qid;
+        $pos = db_query('SELECT * FROM nodequeue_nodes;');
+        foreach ($pos as $row) {
+          db_query('UPDATE nodequeue_nodes SET position = :position',
+                   array(':position'=>$row->position+1));
+        }
+        
+        
+        
+        $node_to_queue = db_query('INSERT INTO nodequeue_nodes (qid, sqid, nid, position)
+                                  VALUES (:qid,:sqid,:nid,:position)',
+                                  array(':qid' => $qid,
+                                        ':sqid' => $qid,
+                                        ':nid' => $node->nid,
+                                        ':position' => 1));
+      } 
+    }
+    
   }
   
 }
@@ -363,7 +388,13 @@ function motor_game_admin() {
   $output = 'ok';
  
   $form = drupal_get_form('motor_game_admin_form');
-  $output.= drupal_render($form);
+  //$output.= drupal_render($form);
+  
+  $subject = 'napi';
+  $node = node_load(320);
+  
+  
+  
   return $output;
 }
 
