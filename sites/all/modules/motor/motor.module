@@ -310,7 +310,7 @@ function motor_create_places_from_mail($nid) {
     $file->uid = $uid;
     $file->uri = $photo['uri'];
     $file->filemime = file_get_mimetype($file->uri);
-    $file->status = 1;
+    $file->status = 0;
     $file->display = 1;
     $file->description = "";  
     $dest = file_default_scheme() . '://';
