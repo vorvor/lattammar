@@ -163,12 +163,6 @@ A cél: 200 méteren belül beletrafálni!';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
-  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing_2']['label'] = 'Egyéni szöveg';
-  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = 'features works+++';
   /* Field: Nodequeue: Queue title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
   $handler->display->display_options['fields']['title_1']['table'] = 'nodequeue_queue';
@@ -300,8 +294,6 @@ A cél: 200 méteren belül beletrafálni!'),
     t('Difficulty'),
     t('<div class="qid" data-qid="[qid]"></div>'),
     t('Page'),
-    t('Egyéni szöveg'),
-    t('features works+++'),
     t('All'),
   );
   $export['games'] = $view;
