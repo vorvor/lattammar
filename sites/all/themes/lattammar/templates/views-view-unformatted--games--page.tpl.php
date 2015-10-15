@@ -25,7 +25,7 @@ preg_match($pattern, $data, $matches);
     <?php print $row; ?>
     
   </div>
-  <?php if ($i > 4) { break;} ?>
+  <?php if ($i > 0) { break;} ?>
 <?php endforeach; ?>
 </a>
 </div>
