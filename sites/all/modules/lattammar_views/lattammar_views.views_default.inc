@@ -163,6 +163,12 @@ A cél: 200 méteren belül beletrafálni!';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing_2']['id'] = 'nothing_2';
+  $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing_2']['label'] = 'Egyéni szöveg';
+  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = 'features works+++';
   /* Field: Nodequeue: Queue title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
   $handler->display->display_options['fields']['title_1']['table'] = 'nodequeue_queue';
@@ -294,6 +300,8 @@ A cél: 200 méteren belül beletrafálni!'),
     t('Difficulty'),
     t('<div class="qid" data-qid="[qid]"></div>'),
     t('Page'),
+    t('Egyéni szöveg'),
+    t('features works+++'),
     t('All'),
   );
   $export['games'] = $view;
@@ -505,14 +513,14 @@ A cél: 200 méteren belül beletrafálni!'),
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'games';
+  $view->human_name = 'games_tips';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'games';
+  $handler->display->display_options['title'] = 'games tips';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -574,7 +582,7 @@ A cél: 200 méteren belül beletrafálni!'),
   $handler->display->display_options['path'] = 'games_tips';
   $translatables['games_tips'] = array(
     t('Master'),
-    t('games'),
+    t('games tips'),
     t('more'),
     t('Apply'),
     t('Reset'),
