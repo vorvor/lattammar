@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the lattammar_views feature.
+ */
+
+include_once 'lattammar_views.features.inc';
