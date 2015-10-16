@@ -275,7 +275,8 @@ h2.node-title a {
   height: 160px;
 }
 
-.view-games .game-row:nth-child(1) img {
+.view-games .game-row:nth-child(1) img,
+.view-games .game-row:nth-child(1) .views-field-field-photo {
   width: 450px;
   height:450px;
 }
