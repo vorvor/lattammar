@@ -266,8 +266,13 @@ h2.node-title a {
   display: block;
 }
 
-.view-games .game-row img {
+.view-games .game-row img,
+.view-games img {
   width: 150px;
+}
+
+.view-games .views-row .views-field-field-photo {
+  height: 160px;
 }
 
 .view-games .game-row:nth-child(1) img {
