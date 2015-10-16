@@ -42,8 +42,8 @@ function lattammar_media_image_default_styles() {
       4 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 150,
-          'height' => 150,
+          'width' => 450,
+          'height' => 450,
         ),
         'weight' => 2,
       ),
