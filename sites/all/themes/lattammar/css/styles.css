@@ -266,6 +266,10 @@ h2.node-title a {
   display: block;
 }
 
+.view-games .game-row img {
+  width: 150px;
+}
+
 .view-games .game-row:nth-child(1) img {
   width: 450px;
 }

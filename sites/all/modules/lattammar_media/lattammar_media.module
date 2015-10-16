@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the lattammar_media feature.
+ */
+
+include_once 'lattammar_media.features.inc';
