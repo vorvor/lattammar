@@ -22,7 +22,6 @@ function lattammar_views_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Játékok';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -277,7 +276,6 @@ A cél: 200 méteren belül beletrafálni!';
   $handler->display->display_options['path'] = 'games/%';
   $translatables['games'] = array(
     t('Master'),
-    t('Játékok'),
     t('more'),
     t('Apply'),
     t('Reset'),
