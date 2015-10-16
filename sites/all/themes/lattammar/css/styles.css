@@ -30,7 +30,6 @@
     font-family: 'leg';
     src: url('../fonts/h-leaguegothic-webfont-webfont.eot');
     src: url('../fonts/h-leaguegothic-webfont-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/h-leaguegothic-webfont-webfont.woff2') format('woff2'),
          url('../fonts/h-leaguegothic-webfont-webfont.woff') format('woff'),
          url('../fonts/h-leaguegothic-webfont-webfont.ttf') format('truetype'),
          url('../fonts/h-leaguegothic-webfont-webfont.svg#webfontregular') format('svg');
@@ -44,7 +43,6 @@
     font-family: 'bahiana';
     src: url('../fonts/bahiana-regular-webfont.eot');
     src: url('../fonts/bahiana-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/bahiana-regular-webfont.woff2') format('woff2'),
          url('../fonts/bahiana-regular-webfont.woff') format('woff'),
          url('../fonts/bahiana-regular-webfont.ttf') format('truetype'),
          url('../fonts/bahiana-regular-webfont.svg#bahianaregular') format('svg');
