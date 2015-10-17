@@ -272,7 +272,7 @@ h2.node-title a {
 }
 
 .view-games .views-row .views-field-field-photo {
-  height: 160px;
+  height: 150px;
 }
 
 .view-games .game-row:nth-child(1) img,
@@ -304,7 +304,7 @@ h2.node-title a {
   padding: 0;
   font-size: 2em;
   margin: 10px 10px 0 10px;
-  line-height: 0.8em;
+  line-height: 0.95em;
   display: block;
   color: #fff;
 }
