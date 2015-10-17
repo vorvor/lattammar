@@ -163,10 +163,12 @@ function lattammar_node_view_alter(&$build) {
         $subqueues = nodequeue_get_subqueues_by_node($queues, $node);
         
         $query = db_query('SELECT * FROM {nodequeue_nodes} WHERE nid = :nid', array(':nid' => $nid))->fetchObject();
+       
+        
         $query = db_query('SELECT nid, position FROM {nodequeue_nodes}
                           WHERE position = :pos
                           AND qid = :qid',
-                          array(':pos' => $query->position - 1,
+                          array(':pos' => $query->position + 1,
                                 ':qid' => $query->qid))->fetchObject();
        
         
