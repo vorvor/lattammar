@@ -69,8 +69,20 @@ a {
   color: #298197;
 }
 
+#main {
+  padding-top: 2em;
+}
+
+#header {
+  height: 65px;
+}
+
 .page-node-add-tipp #main {
   padding-top: 1em;
+}
+
+.header__site-link:hover {
+  text-decoration: none;
 }
 
 .geofield-gmap-cnt {
@@ -179,6 +191,7 @@ h2.node-title a {
 #name-and-slogan {
   font-size: 1.4em;
   margin-left: 20px;
+      margin-top: 3px;
 }
 
 #page {
@@ -187,7 +200,7 @@ h2.node-title a {
 
 #navigation {
   padding: 0;
-  background: #298197;
+  background: #444;
   height: auto;
   clear: both;
   
@@ -200,7 +213,7 @@ h2.node-title a {
 }
 
 #navigation ul.links li {
-  background: #298197;
+  background: #444;
   padding: 4px 10px;
   
 }
@@ -209,7 +222,8 @@ h2.node-title a {
   text-transform: uppercase;
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 0.9em;
 }
 
 .node-type-tipp #block-views-source-place-block {
@@ -304,7 +318,7 @@ h2.node-title a {
   padding: 0;
   font-size: 2em;
   margin: 10px 10px 0 10px;
-  line-height: 0.95em;
+  line-height: 1em;
   display: block;
   color: #fff;
 }
