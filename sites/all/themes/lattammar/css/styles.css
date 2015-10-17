@@ -218,6 +218,15 @@ h2.node-title a {
   
 }
 
+#navigation ul.links li:hover {
+  background: #fff;
+  
+}
+
+#navigation ul.links li:hover a {
+color: #444;
+}
+
 #navigation ul li a {
   text-transform: uppercase;
   color: #fff;
