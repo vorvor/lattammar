@@ -603,7 +603,7 @@ color: #444;
     float: left;
     clear: both;
     padding: 10px 10px 5px 10px;
-    background: #298197;
+    background: #444;
     width: 100%;
   }
   
@@ -646,7 +646,8 @@ color: #444;
   }
   
   .header__site-name {
-    font-size: 1.2em;
+        font-size: 1.4em;
+    margin: 10px;
   }
   
   
