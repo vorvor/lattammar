@@ -148,7 +148,7 @@ function motor_nq_usersave($form, $form_state) {
 }
 
 function prox2word($prox) {
-  $prox = $prox * 1000;
+  
   $node = node_load(arg(1));
   $place_nid = $node->field_source_place['und'][0]['nid'];
   $output = array();
@@ -181,6 +181,10 @@ function solved($nid) {
     $output.= '<div class="solved"></div>';;
   }
   return $output;
+}
+
+function solvedDB($nid) {
+  
 }
 
 function motor_generate_machine_name($name) {
@@ -408,6 +412,46 @@ function motor_nq_perm($qid, $uid) {
   }
 }
 
+
+function calcdist($tipnid) {
+  //function distance($lat1, $lon1, $lat2, $lon2, $unit)
+  
+  if (empty($tipnid)) {
+    $tipnid = arg(1);
+    
+  } else {
+    
+  }
+  $tip_node = node_load($tipnid);
+  $placenid = $tip_node->field_source_place['und'][0]['nid'];
+  
+  //tip coordinates
+  
+  $lat1 = $tip_node->field_point['und'][0]['lat'];
+  $lon1 = $tip_node->field_point['und'][0]['lon'];
+
+  //place coordinates
+  $place_node = node_load($placenid);
+  if (count($place_node->field_place) > 0) {
+    $lat2 = $place_node->field_place['und'][0]['lat'];
+    $lon2 = $place_node->field_place['und'][0]['lon'];
+  } else {
+    $lat2 = $place_node->field_place_manual['und'][0]['lat'];
+    $lon2 = $place_node->field_place_manual['und'][0]['lon'];
+  }
+
+  $theta = $lon1 - $lon2;
+  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+  $dist = acos($dist);
+  $dist = rad2deg($dist);
+  $miles = $dist * 60 * 1.1515;
+  $unit = strtoupper($unit);
+
+  
+    return round($dist*100000);
+  
+
+}
 
 
 

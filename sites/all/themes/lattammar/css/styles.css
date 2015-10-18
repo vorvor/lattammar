@@ -207,9 +207,7 @@ h2.node-title a {
 }
 
 #navigation ul.links {
-  
   width: 100%;
-   
 }
 
 #navigation ul.links li {
@@ -220,7 +218,6 @@ h2.node-title a {
 
 #navigation ul.links li:hover {
   background: #fff;
-  
 }
 
 #navigation ul.links li:hover a {
@@ -625,8 +622,18 @@ color: #444;
     color: orange;
   }
   
-  .view-games .views-row {
-    width: 32%;
+  .view-games .game-row {
+    width:50%;
+  }
+  
+  .view-games .game-row:nth-child(1) .views-row {
+    width:100%;
+    
+  }
+  
+  .game-row .group-title {
+    width:100%;
+    height: 100%;
   }
   
   .view-oneplace .views-field-field-photo img {
@@ -642,7 +649,24 @@ color: #444;
     font-size: 1.2em;
   }
   
+  
+  .view-games .game-row .views-field-field-photo {
+    width: 100%;
+    height:100%;
+    
+  }
+  
+  .view-games .game-row:nth-child(1) img,
+  .view-games .game-row:nth-child(1) .views-field-field-photo {
+    width: 100%;
+    height:100%;
+    max-width:100%;
+  }
 
+  .view-games .game-row img,
+  .view-games img {
+    width: 100%;
+  }
 
   .node-type-tipp .geofieldMap {
     width: 100% !important;
