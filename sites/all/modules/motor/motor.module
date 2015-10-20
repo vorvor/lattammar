@@ -309,7 +309,6 @@ function motor_create_places_from_mail($nid) {
     
     node_object_prepare($node);
     $node->uid = $uid;
-    // Create image File object and associate with Image field.
     $file = new StdClass();
     $file->uid = $uid;
     $file->uri = $photo['uri'];
@@ -414,7 +413,6 @@ function motor_nq_perm($qid, $uid) {
 
 
 function calcdist($tipnid) {
-  //function distance($lat1, $lon1, $lat2, $lon2, $unit)
   
   if (empty($tipnid)) {
     $tipnid = arg(1);
@@ -448,8 +446,23 @@ function calcdist($tipnid) {
   $unit = strtoupper($unit);
 
   
-    return round($dist*100000);
+  //second version
   
+  $pi = 3.141592654 / 180;
+  $lat1 *= $pi;
+  $lon1 *= $pi;
+  $lat2 *= $pi;
+  $lon2 *= $pi;
+
+  $r = 6372.797; // mean radius of Earth in km
+  $dlat = $lat2 - $lat1;
+  $dlng = $lon2 - $lon1;
+  $a = sin($dlat / 2) * sin($dlat / 2) + cos($lat1) * cos($lat2) * sin($dlng / 2) * sin($dlng / 2);
+  $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+  $km = $r * $c;
+  
+  
+    return  $km*1000;
 
 }
 
