@@ -41,8 +41,12 @@ class GoogleGeocode extends GeoAdapter
     else {
       $bounds_string = '';
     }
+
+    // Retrieve the Google API Key, if there is one.
+    $api_key = variable_get('geofield_gmap_google_api_key');
+    $api_key_query_param = !empty($api_key) ? '&key=' . $api_key : '';
     
-    $url = "http://maps.googleapis.com/maps/api/geocode/json";
+    $url = '//maps.googleapis.com/maps/api/js?' . $api_key_query_param;
     $url .= '?address='. urlencode($address);
     $url .= $bounds_string;
     $url .= '&sensor=false';

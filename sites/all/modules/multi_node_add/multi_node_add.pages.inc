@@ -81,6 +81,15 @@ function multi_node_add_page($form, &$form_state, $type = FALSE) {
         '#attributes' => array('class' => array('multi-node-add')),
         '#description' => t('Choose those fields that you would like to edit on the new nodes'),
       );
+      $form['check_all'] = array(
+        '#type' => 'button',
+        '#value' => t('Check all'),
+      );
+      $form['uncheck_all'] = array(
+        '#type' => 'button',
+        '#value' => t('Uncheck all'),
+      );
+
     }
 
     // If there are no available fields, we should not offer a form.
@@ -130,6 +139,10 @@ function multi_node_add_page($form, &$form_state, $type = FALSE) {
     '#type' => 'button',
     '#value' => t('Prepopulate based on first form'),
   ) + $common_attr;
+  $form['options']['reset'] = array(
+    '#type' => 'submit',
+    '#value' => t('Reset'),
+  );
   $form['placeholder']['#markup'] = '<div id="multi_node_add_frames"></div>';
 
   return $form;

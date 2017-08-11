@@ -150,6 +150,25 @@
         return false;
       });
 
+      $('#edit-check-all', context).click(function() {
+        if (typeof ($('#edit-fields-to-utilize input').prop) == 'function') {
+          $('#edit-fields-to-utilize input').prop('checked', 'true');
+        }
+        else {
+          $('#edit-fields-to-utilize input').attr('checked', 'checked');
+        }
+        return false;
+      });
+
+      $('#edit-uncheck-all', context).click(function() {
+        if (typeof ($('#edit-fields-to-utilize input').prop) == 'function') {
+          $('#edit-fields-to-utilize input').prop('checked', 'false');
+        }
+        else {
+          $('#edit-fields-to-utilize input').attr('checked', '');
+        }
+        return false;
+      });
 
     }
   };
